@@ -1,0 +1,40 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.3.50'
+    id 'application'
+}
+
+group 'org.jdanper'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'application'
+apply plugin: 'kotlin'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
+    compile group: 'org.quartz-scheduler', name: 'quartz', version: '2.3.1'
+
+    testCompile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.28'
+    compile group:"com.fasterxml.jackson.core", name:"jackson-core", version:'2.4.2'
+    compile group:"com.fasterxml.jackson.core", name:"jackson-databind", version:'2.4.2'
+    compile group:"com.fasterxml.jackson.core", name:"jackson-annotations", version:'2.4.2'
+
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.8'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+sourceSets {
+    main.kotlin.srcDirs += 'src/main/kotlin'
+}
+
+mainClassName = 'org.jdanper.kScheduler.MainKt'
